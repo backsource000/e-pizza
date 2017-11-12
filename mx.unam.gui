@@ -1,0 +1,582 @@
+package mx.unam.gui;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import java.awt.Font;
+import javax.swing.JComboBox;
+import java.awt.Checkbox;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.ImageIcon;
+import java.awt.Label;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class Pizza extends JFrame {
+	ImageIcon pizza_i;
+	String et_tam[]= {"","Individual","Chica","Mediana","Grande","Familiar"};
+	String et_ing[]= {"","1-2 ing","3-5 ing","6+ ing"};
+	int count=0, limit=0,precio=0,ing=0;
+	String sabores[]= {"","","","","","","","","","","",""};
+	String tamaño="";
+	
+	//ActionListener escucha;
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Pizza frame = new Pizza();
+					frame.setVisible(true);
+					frame.setResizable(false);
+					frame.setTitle("E-PIZZA");
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	public Pizza() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 656, 466);
+		getContentPane().setLayout(null);
+		getContentPane().setLayout(null);
+		getContentPane().setLayout(null);
+		
+		JLabel et_tamaño = new JLabel("Tama\u00F1o");
+		et_tamaño.setFont(new Font("Arial", Font.BOLD, 15));
+		et_tamaño.setBounds(44, 106, 56, 14);
+		getContentPane().add(et_tamaño);
+		
+		JLabel et_ingredientes = new JLabel("No ingredientes");
+		et_ingredientes.setFont(new Font("Arial", Font.BOLD, 15));
+		et_ingredientes.setBounds(44, 142, 139, 26);
+		getContentPane().add(et_ingredientes);
+		
+		JComboBox combo_tamaño = new JComboBox(et_tam);
+		combo_tamaño.setBounds(133, 104, 131, 20);
+		getContentPane().add(combo_tamaño);
+		
+		
+		JComboBox comob_ingredientes = new JComboBox(et_ing);
+		comob_ingredientes.setBounds(179, 146, 85, 20);
+		comob_ingredientes.setEnabled(false);
+		getContentPane().add(comob_ingredientes);
+	
+		//EMPEIZAN CHECKBOX
+		
+		JCheckBox combobox_ex_queso = new JCheckBox("Extra queso");
+		combobox_ex_queso.setBounds(44, 213, 95, 22);
+		getContentPane().add(combobox_ex_queso);
+		combobox_ex_queso.setEnabled(false);
+		
+		JCheckBox checkbox_jamon = new JCheckBox("Jamon");
+		checkbox_jamon.setBounds(44, 264, 95, 22);
+		getContentPane().add(checkbox_jamon);
+		checkbox_jamon.setEnabled(false);
+		
+		JCheckBox checkbox_Piña = new JCheckBox("Pi\u00F1a");
+		checkbox_Piña.setBounds(44, 321, 95, 22);
+		getContentPane().add(checkbox_Piña);
+		checkbox_Piña.setEnabled(false);
+		
+		JCheckBox checkbox_salami = new JCheckBox("Salami");
+		checkbox_salami.setBounds(203, 213, 95, 22);
+		getContentPane().add(checkbox_salami);
+		checkbox_salami.setEnabled(false);
+		
+		JCheckBox checkbox_peperoni = new JCheckBox("Peperoni");
+		checkbox_peperoni.setBounds(203, 264, 95, 22);
+		getContentPane().add(checkbox_peperoni);
+		checkbox_peperoni.setEnabled(false);
+		
+		JCheckBox checkbox_chorizo = new JCheckBox("Chorizo");
+		checkbox_chorizo.setBounds(203, 321, 95, 22);
+		getContentPane().add(checkbox_chorizo);
+		checkbox_chorizo.setEnabled(false);
+		
+		JCheckBox checkbox_bbq = new JCheckBox("BBQ");
+		checkbox_bbq.setBounds(366, 213, 95, 22);
+		getContentPane().add(checkbox_bbq);
+		checkbox_bbq.setEnabled(false);
+		
+		JCheckBox checkbox_aceituna = new JCheckBox("Aceitunas");
+		checkbox_aceituna.setBounds(366, 264, 95, 22);
+		getContentPane().add(checkbox_aceituna);
+		checkbox_aceituna.setEnabled(false);
+		
+		JCheckBox checkbox_Camaron = new JCheckBox("Camaron");
+		checkbox_Camaron.setBounds(366, 321, 95, 22);
+		getContentPane().add(checkbox_Camaron);
+		checkbox_Camaron.setEnabled(false);
+		
+		JCheckBox checkbox_tocino = new JCheckBox("Tocino");
+		checkbox_tocino.setBounds(536, 213, 95, 22);
+		getContentPane().add(checkbox_tocino);
+		checkbox_tocino.setEnabled(false);
+		
+		JCheckBox checkbox_pastor = new JCheckBox("Pastor");
+		checkbox_pastor.setBounds(536, 264, 95, 22);
+		getContentPane().add(checkbox_pastor);
+		checkbox_pastor.setEnabled(false);
+		
+		JCheckBox checkbox_aguacate = new JCheckBox("Aguacate");
+		checkbox_aguacate.setBounds(536, 321, 95, 22);
+		getContentPane().add(checkbox_aguacate);
+		checkbox_aguacate.setEnabled(false);
+
+		JButton boton_limpiar = new JButton("LIMPIAR");
+		boton_limpiar.setIcon(new ImageIcon("C:\\Users\\hxckredx\\Desktop\\Proyectos eclipse\\Pizza\\img\\clean_icon.png"));
+		boton_limpiar.setBounds(115, 376, 120, 41);
+
+		getContentPane().add(boton_limpiar);
+
+		JButton boton_comprar = new JButton("REALIZAR COMPRA");
+		boton_comprar.setIcon(new ImageIcon("C:\\Users\\hxckredx\\Desktop\\Proyectos eclipse\\Pizza\\img\\buy_icon.png"));
+		boton_comprar.setBounds(366, 376, 180, 41);
+		getContentPane().add(boton_comprar);
+
+		JLabel banner_pizza = new JLabel("");
+		banner_pizza.setBounds(0, 0, 650, 88);
+		pizza_i= new ImageIcon();
+		pizza_i= new ImageIcon("C:\\Users\\hxckredx\\Desktop\\Proyectos eclipse\\Pizza\\img\\pizzabaner.jpg");
+		banner_pizza.setIcon(pizza_i);
+
+		getContentPane().add(banner_pizza);
+
+		ActionListener escucha= new ActionListener() {
+			
+			public void seleccionarChecks(boolean d) {
+				if(d==false) {
+					combobox_ex_queso.setSelected(false);
+					checkbox_jamon.setSelected(false);
+					checkbox_Piña.setSelected(false);
+					checkbox_salami.setSelected(false);
+					checkbox_peperoni.setSelected(false);
+					checkbox_chorizo.setSelected(false);
+					checkbox_bbq.setSelected(false);
+					checkbox_aceituna.setSelected(false);
+					checkbox_Camaron.setSelected(false);
+					checkbox_tocino.setSelected(false);
+					checkbox_pastor.setSelected(false);
+					checkbox_aguacate.setSelected(false);
+					
+				}
+				if(d==true) {
+					combobox_ex_queso.setSelected(true);
+					checkbox_jamon.setSelected(true);
+					checkbox_Piña.setSelected(true);
+					checkbox_salami.setSelected(true);
+					checkbox_peperoni.setSelected(true);
+					checkbox_chorizo.setSelected(true);
+					checkbox_bbq.setSelected(true);
+					checkbox_aceituna.setSelected(true);
+					checkbox_Camaron.setSelected(true);
+					checkbox_tocino.setSelected(true);
+					checkbox_pastor.setSelected(true);
+					checkbox_aguacate.setSelected(true);
+				
+				}
+	
+			}
+			
+			public void habilitarChecks(boolean x) {
+				if(x==true) {
+					combobox_ex_queso.setEnabled(true);
+					checkbox_jamon.setEnabled(true);
+					checkbox_Piña.setEnabled(true);
+					checkbox_salami.setEnabled(true);
+					checkbox_peperoni.setEnabled(true);
+					checkbox_chorizo.setEnabled(true);
+					checkbox_bbq.setEnabled(true);
+					checkbox_aceituna.setEnabled(true);
+					checkbox_Camaron.setEnabled(true);
+					checkbox_tocino.setEnabled(true);
+					checkbox_pastor.setEnabled(true);
+					checkbox_aguacate.setEnabled(true);
+				}
+				if(x==false) {
+					comob_ingredientes.setSelectedIndex(0);
+					comob_ingredientes.setEnabled(false);
+					combobox_ex_queso.setEnabled(false);
+					checkbox_jamon.setEnabled(false);
+					checkbox_Piña.setEnabled(false);
+					checkbox_salami.setEnabled(false);
+					checkbox_peperoni.setEnabled(false);
+					checkbox_chorizo.setEnabled(false);
+					checkbox_bbq.setEnabled(false);
+					checkbox_aceituna.setEnabled(false);
+					checkbox_Camaron.setEnabled(false);
+					checkbox_tocino.setEnabled(false);
+					checkbox_pastor.setEnabled(false);
+					checkbox_aguacate.setEnabled(false);
+					
+				}
+			}
+
+			public void vaciarSabores(boolean s) {
+				if(s=true) {
+              sabores[0]="";
+			  sabores[1]="";
+			  sabores[2]="";
+			  sabores[3]="";
+			  sabores[4]="";
+			  sabores[5]="";
+			  sabores[6]="";
+			  sabores[7]="";
+			  sabores[8]="";
+			  sabores[9]="";
+			  sabores[10]="";
+			  sabores[11]="";
+				}
+			}
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				if(e.getSource()==combo_tamaño) {
+					if(combo_tamaño.getSelectedIndex()>0) {
+						comob_ingredientes.setEnabled(true);
+					}
+					else {
+						habilitarChecks(false);
+
+					}
+					
+					if(combo_tamaño.getSelectedIndex()==1) {
+						precio=50;
+						tamaño="Individual";
+					}
+					
+					if(combo_tamaño.getSelectedIndex()==2) {
+						precio=100;
+						tamaño="Chica";
+					}
+					if(combo_tamaño.getSelectedIndex()==3) {
+						precio=150;
+						tamaño="Mediana";
+					}
+					if(combo_tamaño.getSelectedIndex()==4) {
+						precio=200;
+						tamaño="Grande";
+					}
+					if(combo_tamaño.getSelectedIndex()==5) {
+						precio=250;
+						tamaño="Familiar";
+					}
+
+				}
+
+				if(e.getSource()==comob_ingredientes) {
+					if(comob_ingredientes.getSelectedIndex()>0) { //Si ingredientes es mayor a cero se habilitan los checkbox
+						habilitarChecks(true);
+						if(comob_ingredientes.getSelectedIndex()==1) {
+							seleccionarChecks(false);
+							vaciarSabores(true);
+							count=0;
+							limit=2;
+						}
+						if(comob_ingredientes.getSelectedIndex()==2) {
+							seleccionarChecks(false);
+							vaciarSabores(true);
+							count=0;
+							limit=5;
+							ing=50;
+						}
+						if(comob_ingredientes.getSelectedIndex()==3) {
+							seleccionarChecks(false);
+							vaciarSabores(true);
+							count=0;
+							limit=12;
+							ing=100;
+						}
+
+					}
+					if(comob_ingredientes.getSelectedIndex()==0) {
+						seleccionarChecks(false);
+
+					}
+					
+					if(comob_ingredientes.getSelectedIndex()==1) {
+						
+						
+					}
+
+
+				}//if de combo ingredientes
+				
+				if(e.getSource()==boton_limpiar) {
+					if(comob_ingredientes.getSelectedIndex()>0) {
+						seleccionarChecks(false);						
+						//count=0;
+					}
+					else if(comob_ingredientes.getSelectedIndex()==0||combo_tamaño.getSelectedIndex()==0) {
+						JOptionPane.showMessageDialog(null, "Seleccione una opcion valida", "Aviso", 1);
+						
+					}
+					
+					if(comob_ingredientes.getSelectedIndex()>0&&combo_tamaño.getSelectedIndex()>0&&count==0) {
+						JOptionPane.showMessageDialog(null, "NO HAY NADA QUE LIMPIAR", "Aviso", 1);
+						
+					}
+					
+					count=0;
+					vaciarSabores(true);
+					
+				}
+
+					
+				if(e.getSource()==combobox_ex_queso) {
+					if(combobox_ex_queso.isSelected()) {
+						count++;
+						sabores[0]="Extra queso";
+						if(count>limit) {
+							JOptionPane.showMessageDialog(null,"Limite de ingredientes", "aviso", 1);
+							combobox_ex_queso.setSelected(false);
+							sabores[0]="";
+							count--;
+						}
+					}else {
+						sabores[0]="";
+						count--;
+						
+					}
+				} //check de queso extra
+				
+				if(e.getSource()==checkbox_jamon) {
+					if(checkbox_jamon.isSelected()) {
+						count++;
+						sabores[1]="Jamon";
+						if(count>limit) {
+							JOptionPane.showMessageDialog(null,"Limite de ingredientes", "aviso", 1);
+							checkbox_jamon.setSelected(false);
+							sabores[1]="";
+							count--;
+						}
+					}else {
+						sabores[1]="";
+						count--;
+					}
+				}//checkbox jamon
+				if(e.getSource()==checkbox_Piña) {
+					if(checkbox_Piña.isSelected()) {
+						count++;
+						sabores[2]="Piña";
+						if(count>limit) {
+							JOptionPane.showMessageDialog(null,"Limite de ingredientes", "aviso", 1);
+							checkbox_Piña.setSelected(false);
+							sabores[2]="";
+							count--;
+						}
+					}else {
+						sabores[2]="";
+						count--;
+					}
+				}//checkbox piña
+				
+				if(e.getSource()==checkbox_salami) {
+					if(checkbox_salami.isSelected()) {
+						count++;
+						sabores[3]="Salami";
+						if(count>limit) {
+							JOptionPane.showMessageDialog(null,"Limite de ingredientes", "aviso", 1);
+							checkbox_salami.setSelected(false);
+							sabores[3]="";
+							count--;
+						}
+					}else {
+						sabores[3]="";
+						count--;
+					}
+				}//checkbox salami
+				if(e.getSource()==checkbox_peperoni) {
+					if(checkbox_peperoni.isSelected()) {
+						count++;
+						sabores[4]="Peperoni";
+						if(count>limit) {
+							JOptionPane.showMessageDialog(null,"Limite de ingredientes", "aviso", 1);
+							checkbox_peperoni.setSelected(false);
+							sabores[4]="";
+							count--;
+						}
+					}else {
+						sabores[4]="";
+						count--;
+					}
+				}//checkbox peperoni
+				
+				if(e.getSource()==checkbox_chorizo) {
+					if(checkbox_chorizo.isSelected()) {
+						count++;
+						sabores[5]="Chorizo";
+						if(count>limit) {
+							JOptionPane.showMessageDialog(null,"Limite de ingredientes", "aviso", 1);
+							checkbox_chorizo.setSelected(false);
+							sabores[5]="";
+							count--;
+						}
+					}else {
+						sabores[5]="";
+						count--;
+					}
+				}//checkbox chorizo
+				if(e.getSource()==checkbox_bbq) {
+					if(checkbox_bbq.isSelected()) {
+						count++;
+						sabores[6]="BBQ";
+						if(count>limit) {
+							JOptionPane.showMessageDialog(null,"Limite de ingredientes", "aviso", 1);
+							checkbox_bbq.setSelected(false);
+							sabores[6]="";
+							count--;
+						}
+					}else {
+						sabores[6]="";
+						count--;
+					}
+				}//checkbox bbq
+				
+				if(e.getSource()==checkbox_aceituna) {
+					if(checkbox_aceituna.isSelected()) {
+						count++;
+						sabores[7]="Aceituna";
+						if(count>limit) {
+							JOptionPane.showMessageDialog(null,"Limite de ingredientes", "aviso", 1);
+							checkbox_aceituna.setSelected(false);
+							sabores[7]="";
+							count--;
+						}
+					}else {
+						sabores[7]="";
+						count--;
+					}
+				}//checkbox aceitunas
+				
+				if(e.getSource()==checkbox_Camaron) {
+					if(checkbox_Camaron.isSelected()) {
+						count++;
+						sabores[8]="Camaron";
+						if(count>limit) {
+							JOptionPane.showMessageDialog(null,"Limite de ingredientes", "aviso", 1);
+							checkbox_Camaron.setSelected(false);
+							sabores[8]="";
+							count--;
+						}
+					}else {
+						sabores[8]="";
+						count--;
+					}
+				}//checkbox camaron
+				
+				if(e.getSource()==checkbox_tocino) {
+					if(checkbox_tocino.isSelected()) {
+						count++;
+						sabores[9]="Tocino";
+						if(count>limit) {
+							JOptionPane.showMessageDialog(null,"Limite de ingredientes", "aviso", 1);
+							checkbox_tocino.setSelected(false);
+							sabores[9]="";
+							count--;
+						}
+					}else {
+						sabores[9]="";
+						count--;
+					}
+				}//checkbox tocino
+				
+				if(e.getSource()==checkbox_pastor) {
+					if(checkbox_pastor.isSelected()) {
+						count++;
+						sabores[10]="Pastor";
+						if(count>limit) {
+							JOptionPane.showMessageDialog(null,"Limite de ingredientes", "aviso", 1);
+							checkbox_pastor.setSelected(false);
+							sabores[10]="";
+							count--;
+						}
+					}else {
+						sabores[10]="";
+						count--;
+					}
+				}//checkbox pastor
+				
+				
+				
+				
+				if(e.getSource()==checkbox_aguacate) {
+					if(checkbox_aguacate.isSelected()) {
+						count++;
+						sabores[11]="Aguacate";
+						if(count>limit) {
+							JOptionPane.showMessageDialog(null,"Limite de ingredientes", "aviso", 1);
+							checkbox_aguacate.setSelected(false);
+							sabores[11]="";
+							count--;
+						}
+					}else {
+						sabores[11]="";
+						count--;
+					}
+				}
+			if(e.getSource()==boton_comprar) {
+				if(count==0) {
+					JOptionPane.showMessageDialog(null,"SELECCIONA TAMAÑO E INGREDIENTES", "ERROR", 0);
+					
+				}
+				else {
+					
+				int subtotal=ing+precio; //ing cantidad de ingredientes precio extra
+					
+				JOptionPane.showMessageDialog(null,"COMPRA REALIZADA CON EXITO: \n"+"Tamaño de pizza: "+tamaño+ "\n"+
+						"Los ingredientes son:\n"
+						+ sabores[0]+"\n"
+						+ sabores[1]+"\n"
+						+ sabores[2]+"\n"
+						+ sabores[3]+"\n"
+						+ sabores[4]+"\n"
+						+ sabores[5]+"\n"
+						+ sabores[6]+"\n"
+						+ sabores[7]+"\n"
+						+ sabores[8]+"\n"
+						+ sabores[9]+"\n"
+						+ sabores[10]+"\n"
+						+ sabores[11]+"\n -----------------------------------------"
+						+"\n Total: "+subtotal+" pesos.", "COMPRA REALIZADA", 1);
+				}
+				
+				
+				comob_ingredientes.setSelectedIndex(0);
+				combo_tamaño.setSelectedIndex(0);
+				seleccionarChecks(false);
+				habilitarChecks(false);
+				vaciarSabores(true);
+				count=0;
+				limit=0;
+				
+			
+			}
+		}//ActionPerformed
+	}; //ActionListener ESCUCHA
+		
+		combo_tamaño.addActionListener(escucha);
+		comob_ingredientes.addActionListener(escucha);
+		combobox_ex_queso.addActionListener(escucha);
+		checkbox_jamon.addActionListener(escucha);
+		checkbox_Piña.addActionListener(escucha);
+		checkbox_salami.addActionListener(escucha);
+		checkbox_peperoni.addActionListener(escucha);
+		checkbox_chorizo.addActionListener(escucha);
+		checkbox_bbq.addActionListener(escucha);
+		checkbox_aceituna.addActionListener(escucha);
+		checkbox_Camaron.addActionListener(escucha);
+		checkbox_tocino.addActionListener(escucha);
+		checkbox_pastor.addActionListener(escucha);
+		checkbox_aguacate.addActionListener(escucha);
+		boton_limpiar.addActionListener(escucha);
+		boton_comprar.addActionListener(escucha);
+	}//METODOPIZZA
+}
